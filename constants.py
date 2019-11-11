@@ -1,0 +1,3 @@
+FILE = "data.txt"
+SEPERATOR = ' ' 
+
