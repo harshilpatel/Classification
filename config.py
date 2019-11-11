@@ -2,7 +2,7 @@ __author__ = "Harshilkumar Patel"
 __status__ = "Development"
 
 import constants
-from logger import logger
+from utils import logger
 
 def get_training_data(file_to_read = constants.FILE):
     raw_data = open(file_to_read).read().strip().split("\n")

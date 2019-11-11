@@ -3,7 +3,7 @@ __status__ = "Development"
 
 import config
 import classifier
-from logger import logger
+from utils import logger
 import constants
 
 data = config.get_training_data()

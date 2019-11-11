@@ -1,7 +1,7 @@
 __author__ = "Harshilkumar Patel"
 __status__ = "Development"
 
-from logger import logger
+from utils import logger
 from pprint import pprint
 import math
 
