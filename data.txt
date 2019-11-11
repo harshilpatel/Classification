@@ -1,0 +1,9 @@
+BodyTemperature SkinCover GivesBirth HasLegs Hibernate Class
+warm-blooded hair yes yes no mammal
+cold-blooded scales no no yes reptile
+cold-blooded scales no no no fish
+warm-blooded hair yes no no mammal
+cold-blooded none no yes yes amphibian
+cold-blooded scales no yes no reptile
+warm-blooded hair yes yes yes mammal
+warm-blooded feathers no yes no bird

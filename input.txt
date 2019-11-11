@@ -1,0 +1,2 @@
+BodyTemperature SkinCover GivesBirth HasLegs Hibernate
+warm-blooded hair yes yes no

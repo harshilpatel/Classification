@@ -1,3 +1,6 @@
+__author__ = "Harshilkumar Patel"
+__status__ = "Development"
+
 import constants
 from logger import logger
 
@@ -8,6 +11,13 @@ def get_training_data(file_to_read = constants.FILE):
     while raw_data:
         # new_line = raw_data.pop(0).split(constants.SEPERATOR)
         new_line = raw_data.pop(0).split()
+
+        for i, value in enumerate(new_line):
+            try:
+                new_line[i] = float(value)
+            except Exception as e:
+                pass
+
         data.append(new_line)
     
     logger.debug(data)

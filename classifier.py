@@ -1,4 +1,9 @@
+__author__ = "Harshilkumar Patel"
+__status__ = "Development"
+
 from logger import logger
+from pprint import pprint
+import math
 
 class NaiveBayes(object):
     def __init__(self, data):
@@ -74,7 +79,74 @@ class NaiveBayes(object):
                 result = key
         return result
 
+
+class KNN(object):
+    def __init__(self, data, k = 3):
+        self.is_continous = True
+        self.data = data
+        self.k = k
+
+        self.column_names = self.data[0]
+        self.data = self.data[1:]
         
-    # def predict(self):
-    #     result_index = 0
-    #     return data[result_index]
+        self.data_size = len(self.data) * 1.0
+        self.number_of_columns = len(self.data[0])
+
+        # pprint(self.data)
+
+
+    
+    def get_hamming_distance(self, row_index, data_instance):
+        result = 0
+        for i, data_instance in enumerate(self.data[row_index][:-1]):
+            # for j, column_data in enumerate(data_instance):
+            # print(train_instance[i])
+            # print(data_instance)
+            result += 0 if train_instance[i] == data_instance else 1
+    
+    def get_euclidean_distance(self, row_index, train_instance):
+        result = 0
+        for i, data_instance in enumerate(self.data[row_index][:-1]):
+            # for j, column_data in enumerate(data_instance):
+            # print(train_instance[i])
+            # print(data_instance)
+            result += (train_instance[i] - data_instance)**2
+        
+        result = math.sqrt(result)
+        logger.debug("distance for %s and %s is %s", self.data[row_index], train_instance, result)
+
+        return result
+
+    def get_distance(self, row_index, data_instance):
+        if self.is_continous:
+            return self.get_euclidean_distance(row_index, data_instance)
+        else:
+            return self.get_hamming_distance(row_index, data_instance)
+    
+
+    def predict(self, train_instance):
+        distances = []
+
+        for i, data_instance in enumerate(self.data):
+            distances.append( self.get_distance(i, train_instance) )
+        
+        smallest_distances = sorted(distances)[:self.k]
+        distances = [i if i in smallest_distances else 0 for i in distances]
+
+        prediction = {}
+        for i, row in enumerate(self.data):
+            if distances[i]:
+                label = row[-1]
+                prediction[label] = prediction.get(label, 0) + 1
+        
+
+        max_p = 0
+        result = ""
+        for key, value in prediction.items():
+            if value > max_p:
+                max_p = value
+                result = key
+        return result
+        
+
+
